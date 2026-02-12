@@ -143,6 +143,15 @@ void AMyFirstActor::Tick(float DeltaTime)
 		NewScale += FVector(ScaleOffset);
 
 		Mesh->SetRelativeScale3D(NewScale);
+
+		// --- dynamic mat ---
+
+		if (DynamicMaterial)
+		{
+			CurrentGlow = FMath::FInterpTo(CurrentGlow, TargetGlow, DeltaTime, GlowInterpSpeed);
+
+			DynamicMaterial->SetScalarParameterValue("GlowStrength", CurrentGlow);
+		}
 	}
 }
 
@@ -166,7 +175,7 @@ void AMyFirstActor::OnOverlapBegin(
 
 		if (DynamicMaterial)
 		{
-			DynamicMaterial->SetScalarParameterValue("GlowStrength", 5.f);
+			TargetGlow = 5.f;
 		}
 	}
 }
@@ -186,7 +195,7 @@ void AMyFirstActor::OnOverlapEnd(
 
 		if (DynamicMaterial)
 		{
-			DynamicMaterial->SetScalarParameterValue("GlowStrength", 0.f);
+			TargetGlow = 0.f;
 		}
 	}
 }

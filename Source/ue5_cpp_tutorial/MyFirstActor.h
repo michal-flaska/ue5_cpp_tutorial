@@ -39,6 +39,15 @@ public:
 	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
 	float ScaleSpeed = 1.f;
 
+	// --- dynamic mat glow ---
+
+	float CurrentGlow = 0.f;
+	float TargetGlow = 0.f;
+
+	UPROPERTY(EditAnywhere)
+	float GlowInterpSpeed = 5.f;
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
