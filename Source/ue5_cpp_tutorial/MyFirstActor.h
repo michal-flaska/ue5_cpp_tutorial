@@ -82,9 +82,4 @@ private:
 		UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex
 	);
-
-	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
-	UMaterialInterface* OverlapMaterial;
-
-	UMaterialInstanceDynamic* DynamicMaterial;
 };

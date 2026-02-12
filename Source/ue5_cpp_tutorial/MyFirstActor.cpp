@@ -88,8 +88,7 @@ void AMyFirstActor::BeginPlay()
 
 	bGameStarted = true; // my attempt to fix overlap bugs
 
-	UE_LOG(LogTemp, Warning, TEXT("Base: %s"), *GetNameSafe(CachedBaseMaterial));
-	UE_LOG(LogTemp, Warning, TEXT("Overlap: %s"), *GetNameSafe(OverlapMaterial));
+	UE_LOG(LogTemp, Warning, TEXT("Cached Base Material: %s"), *GetNameSafe(CachedBaseMaterial));
 
 	StartLocation = GetActorLocation();
 	StartScale = Mesh->GetRelativeScale3D();
