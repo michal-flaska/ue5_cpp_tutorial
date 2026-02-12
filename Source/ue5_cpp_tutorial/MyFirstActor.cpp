@@ -1,6 +1,5 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "MyFirstActor.h"
 
 // Constructor
@@ -28,15 +27,30 @@ AMyFirstActor::AMyFirstActor()
 	USceneComponent* SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Root")); // my attempt to make the cpp actor movable in scene
 	RootComponent = SceneRoot;
 
+	// --- sphere ---
+	// --- sphere root ---
+	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	RootComponent = Sphere;
+
+	Sphere->InitSphereRadius(150.f);
+	Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	Sphere->SetCollisionResponseToAllChannels(ECR_Ignore);
+	Sphere->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+	Sphere->SetMobility(EComponentMobility::Movable);
+
+	// --- mesh ---
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	Mesh->SetupAttachment(RootComponent);
+	Mesh->SetupAttachment(Sphere);
+	Mesh->SetMobility(EComponentMobility::Movable);
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMesh(TEXT("/Engine/BasicShapes/Cube.Cube"));
-
 	if (CubeMesh.Succeeded())
 	{
 		Mesh->SetStaticMesh(CubeMesh.Object);
 	}
+
+	// --- overlap bind ---
+	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AMyFirstActor::OnOverlapBegin);
 }
 
 void AMyFirstActor::OnConstruction(const FTransform& Transform)
@@ -84,7 +98,7 @@ void AMyFirstActor::Tick(float DeltaTime)
 		//	NewRotation.Roll += RotationSpeed * DeltaTime;
 		//	Mesh->SetRelativeRotation(NewRotation);
 
-		// using deltatime because we want it to rotate per second, not by frame
+		// using deltatime because we want i	t to rotate per second, not by frame
 		// on 120 fps → insane spin
 		// on 30 fps → slower spin
 		// DeltaTime makes it per second.
@@ -116,4 +130,15 @@ void AMyFirstActor::Tick(float DeltaTime)
 
 		Mesh->SetRelativeScale3D(NewScale);
 	}
+}
+
+void AMyFirstActor::OnOverlapBegin(
+	UPrimitiveComponent* OverlappedComponent,
+	AActor* OtherActor,
+	UPrimitiveComponent* OtherComp,
+	int32 OtherBodyIndex,
+	bool bFromSweep,
+	const FHitResult& SweepResult)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Overlap with %s"), *OtherActor->GetName());
 }

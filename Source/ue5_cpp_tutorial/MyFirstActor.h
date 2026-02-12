@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "MyFirstActor.generated.h"
+#include "Components/SphereComponent.h"
+
+#include "MyFirstActor.generated.h" // should always be included last
 
 UCLASS()
 class UE5_CPP_TUTORIAL_API AMyFirstActor : public AActor
@@ -46,6 +48,19 @@ private:
 	UPROPERTY(VisibleAnywhere, /* BlueprintReadOnly, */ Category = "Components")
 	UStaticMeshComponent* Mesh;
 
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* Sphere;
+
 	FVector StartLocation;
 	FVector StartScale;
+
+	UFUNCTION()
+	void OnOverlapBegin(
+		UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult
+	);
 };
