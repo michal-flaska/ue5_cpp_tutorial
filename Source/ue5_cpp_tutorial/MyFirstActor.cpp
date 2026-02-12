@@ -37,8 +37,6 @@ AMyFirstActor::AMyFirstActor()
 	{
 		Mesh->SetStaticMesh(CubeMesh.Object);
 	}
-
-
 }
 
 void AMyFirstActor::OnConstruction(const FTransform& Transform)
@@ -82,7 +80,7 @@ void AMyFirstActor::Tick(float DeltaTime)
 	// then we upgrade it to rotate the mesh component only, not the whole actor.that will teach local vs world space.
 
 	FRotator NewRotation = Mesh->GetRelativeRotation();
-	NewRotation.Yaw += 90.f * DeltaTime;
+	NewRotation.Yaw += RotationSpeed * DeltaTime;
+	NewRotation.Roll += RotationSpeed * DeltaTime;
 	Mesh->SetRelativeRotation(NewRotation); // now it rotates locally and not globally
-
 }

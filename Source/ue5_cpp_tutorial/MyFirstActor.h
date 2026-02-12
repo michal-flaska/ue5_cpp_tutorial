@@ -16,6 +16,9 @@ public:
 	AMyFirstActor();
 	virtual void OnConstruction(const FTransform& Transform) override;
 
+	UPROPERTY(EditAnywhere) // editanywhere means i can edit it in editor
+	float RotationSpeed = 90.f;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -24,7 +27,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+private:
+	UPROPERTY(VisibleAnywhere, /* BlueprintReadOnly, */ Category = "Components")
 	UStaticMeshComponent* Mesh;
-
 };
