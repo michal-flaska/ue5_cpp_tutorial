@@ -38,6 +38,8 @@ AMyFirstActor::AMyFirstActor()
 	Sphere->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 	Sphere->SetMobility(EComponentMobility::Movable);
 
+	Sphere->OnComponentEndOverlap.AddDynamic(this, &AMyFirstActor::OnOverlapEnd);
+
 	// --- mesh ---
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(Sphere);
@@ -80,6 +82,12 @@ void AMyFirstActor::BeginPlay()
 
 	// UE_LOG(LogTemp, Warning, TEXT("MyFirstActor BeginPlay"));
 	UE_LOG(LogTemp, Warning, TEXT("World is %s"), *GetWorld()->GetName());
+
+	if (BaseMaterial)
+	{
+		DynamicMaterial = UMaterialInstanceDynamic::Create(BaseMaterial, this);
+		Mesh->SetMaterial(0, DynamicMaterial);
+	}
 
 }
 
@@ -129,6 +137,13 @@ void AMyFirstActor::Tick(float DeltaTime)
 		NewScale += FVector(ScaleOffset);
 
 		Mesh->SetRelativeScale3D(NewScale);
+		
+
+		// --- material ---
+		if (OverlapMaterial)
+		{
+			Mesh->SetMaterial(0, OverlapMaterial);
+		}
 	}
 }
 
@@ -141,4 +156,21 @@ void AMyFirstActor::OnOverlapBegin(
 	const FHitResult& SweepResult)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Overlap with %s"), *OtherActor->GetName());
+
+	if (OverlapMaterial)
+	{
+		Mesh->SetMaterial(0, OverlapMaterial);
+	}
+}
+
+void AMyFirstActor::OnOverlapEnd(
+	UPrimitiveComponent* OverlappedComponent,
+	AActor* OtherActor,
+	UPrimitiveComponent* OtherComp,
+	int32 OtherBodyIndex)
+{
+	if (BaseMaterial)
+	{
+		Mesh->SetMaterial(0, BaseMaterial);
+	}
 }

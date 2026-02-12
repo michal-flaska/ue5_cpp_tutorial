@@ -6,6 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "Components/SphereComponent.h"
 
+#include "Materials/MaterialInterface.h"
+#include "Materials/MaterialInstanceDynamic.h"
+
 #include "MyFirstActor.generated.h" // should always be included last
 
 UCLASS()
@@ -21,19 +24,19 @@ public:
 	UPROPERTY(EditAnywhere) // editanywhere means i can edit it in editor
 	float RotationSpeed = 90.f;
 
-	UPROPERTY(EditAnywhere, Category = "Rotation")
+	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
 	bool bCanRotate = true; // booleans start with b. its not necessary but its a goood practice in UE
 
-	UPROPERTY(EditAnywhere, Category = "Floating")
+	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
 	float FloatAmplitude = 50.f;
 
-	UPROPERTY(EditAnywhere, Category = "Floating")
+	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
 	float FloatSpeed = 1.f;
 
-	UPROPERTY(EditAnywhere, Category = "Floating")
+	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
 	float ScaleAmplitude = 0.2f;
 
-	UPROPERTY(EditAnywhere, Category = "Floating")
+	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
 	float ScaleSpeed = 1.f;
 
 protected:
@@ -45,7 +48,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	UPROPERTY(VisibleAnywhere, /* BlueprintReadOnly, */ Category = "Components")
+	UPROPERTY(VisibleAnywhere, /* BlueprintReadOnly, */ Category = "My First Actor - Properties")
 	UStaticMeshComponent* Mesh;
 
 	UPROPERTY(VisibleAnywhere)
@@ -63,4 +66,21 @@ private:
 		bool bFromSweep,
 		const FHitResult& SweepResult
 	);
+
+	UFUNCTION()
+	void OnOverlapEnd(
+		UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex
+	);
+
+
+	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
+	UMaterialInterface* BaseMaterial;
+
+	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
+	UMaterialInterface* OverlapMaterial;
+
+	UMaterialInstanceDynamic* DynamicMaterial;
 };
