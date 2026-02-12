@@ -7,7 +7,7 @@
 AMyFirstActor::AMyFirstActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false; // for now i'll set it to false
+	PrimaryActorTick.bCanEverTick = true; // set to true because we are rotating the cube
 
 	UE_LOG(LogTemp, Warning, TEXT("MyFirstActor Constructor"));
 	
@@ -27,6 +27,17 @@ AMyFirstActor::AMyFirstActor()
 
 	USceneComponent* SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Root")); // my attempt to make the cpp actor movable in scene
 	RootComponent = SceneRoot;
+
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	Mesh->SetupAttachment(RootComponent);
+
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMesh(TEXT("/Engine/BasicShapes/Cube.Cube"));
+
+	if (CubeMesh.Succeeded())
+	{
+		Mesh->SetStaticMesh(CubeMesh.Object);
+	}
+
 
 }
 
@@ -61,5 +72,16 @@ void AMyFirstActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	UE_LOG(LogTemp, Warning, TEXT("MyFirstActor Ticking"));
+
+	FRotator NewRotation = GetActorRotation();
+	NewRotation.Yaw += 90.f * DeltaTime;	// deltatime because we want it to rotate per second, not by frame
+											// on 120 fps ? insane spin
+											// on 30 fps ? slower spin
+											// DeltaTime makes it per second.
+											// engine fundamentals unlocked.
+											// now run it and confirm cube spins.
+											// then we upgrade it to rotate the mesh component only, not the whole actor.that will teach local vs world space.
+	SetActorRotation(NewRotation);
+
 
 }
