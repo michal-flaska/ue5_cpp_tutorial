@@ -43,6 +43,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY()
+	UMaterialInterface* CachedBaseMaterial;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -76,10 +79,6 @@ private:
 		UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex
 	);
-
-
-	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
-	UMaterialInterface* BaseMaterial;
 
 	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
 	UMaterialInterface* OverlapMaterial;

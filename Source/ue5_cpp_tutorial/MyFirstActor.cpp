@@ -75,9 +75,11 @@ void AMyFirstActor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	CachedBaseMaterial = Mesh->GetMaterial(0);
+
 	bGameStarted = true; // my attempt to fix overlap bugs
 
-	UE_LOG(LogTemp, Warning, TEXT("Base: %s"), *GetNameSafe(BaseMaterial));
+	UE_LOG(LogTemp, Warning, TEXT("Base: %s"), *GetNameSafe(CachedBaseMaterial));
 	UE_LOG(LogTemp, Warning, TEXT("Overlap: %s"), *GetNameSafe(OverlapMaterial));
 
 	StartLocation = GetActorLocation();
@@ -87,11 +89,6 @@ void AMyFirstActor::BeginPlay()
 
 	UE_LOG(LogTemp, Warning, TEXT("MyFirstActor BeginPlay"));
 	// UE_LOG(LogTemp, Warning, TEXT("World is %s"), *GetWorld()->GetName());
-
-	if (BaseMaterial)
-	{
-		Mesh->SetMaterial(0, BaseMaterial);
-	}
 }
 
 // Called every frame
@@ -127,7 +124,7 @@ void AMyFirstActor::Tick(float DeltaTime)
 		FVector NewLocation = StartLocation;
 		NewLocation.Z += ZOffset;
 
-		// SetActorLocation(NewLocation);
+		SetActorLocation(NewLocation);
 
 		// ----
 
@@ -158,7 +155,11 @@ void AMyFirstActor::OnOverlapBegin(
 	if (OtherActor->IsA(APawn::StaticClass()))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("BEGIN"));
-		Mesh->SetMaterial(0, OverlapMaterial);
+
+		if (OverlapMaterial)
+		{
+			Mesh->SetMaterial(0, OverlapMaterial);
+		}
 	}
 }
 
@@ -174,7 +175,11 @@ void AMyFirstActor::OnOverlapEnd(
 	if (OtherActor->IsA(APawn::StaticClass()))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("END"));
-		Mesh->SetMaterial(0, BaseMaterial);
+
+		if (CachedBaseMaterial)
+		{
+			Mesh->SetMaterial(0, CachedBaseMaterial);
+		}
 	}
 }
 
