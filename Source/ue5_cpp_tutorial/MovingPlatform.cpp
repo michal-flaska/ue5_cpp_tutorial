@@ -20,15 +20,17 @@ void AMovingPlatform::BeginPlay()
 	
 	FVector StartLocation = GetActorLocation();
 
-	for (const FVector& Point : LocalPoints)
+	WorldPoints.Empty(); // clear world points in case beginplay run again in PIE
+
+	for (USceneComponent* Point : ControlPoints)
 	{
-		WorldPoints.Add(StartLocation + Point);
+		if (Point)
+		{
+			WorldPoints.Add(Point->GetComponentLocation());
+		}
 	}
 
-	if (WorldPoints.Num() > 0)
-	{
-		SetActorLocation(WorldPoints[0]);
-	}
+	if (WorldPoints.Num() < 2) return;
 }
 
 // Called every frame

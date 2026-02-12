@@ -33,6 +33,10 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float MoveSpeed = 200.f;
 
+	UPROPERTY(EditInstanceOnly)
+	TArray<USceneComponent*> ControlPoints;
+
+	UPROPERTY()
 	TArray<FVector> WorldPoints;
 
 	int32 CurrentPointIndex = 0;
