@@ -75,20 +75,23 @@ void AMyFirstActor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	bGameStarted = true; // my attempt to fix overlap bugs
+
+	UE_LOG(LogTemp, Warning, TEXT("Base: %s"), *GetNameSafe(BaseMaterial));
+	UE_LOG(LogTemp, Warning, TEXT("Overlap: %s"), *GetNameSafe(OverlapMaterial));
+
 	StartLocation = GetActorLocation();
 	StartScale = Mesh->GetRelativeScale3D();
 
 	SetActorTickEnabled(bCanRotate == true); // if bCanRotate is true, it will enable actor tick
 
-	// UE_LOG(LogTemp, Warning, TEXT("MyFirstActor BeginPlay"));
-	UE_LOG(LogTemp, Warning, TEXT("World is %s"), *GetWorld()->GetName());
+	UE_LOG(LogTemp, Warning, TEXT("MyFirstActor BeginPlay"));
+	// UE_LOG(LogTemp, Warning, TEXT("World is %s"), *GetWorld()->GetName());
 
 	if (BaseMaterial)
 	{
-		DynamicMaterial = UMaterialInstanceDynamic::Create(BaseMaterial, this);
-		Mesh->SetMaterial(0, DynamicMaterial);
+		Mesh->SetMaterial(0, BaseMaterial);
 	}
-
 }
 
 // Called every frame
@@ -106,13 +109,11 @@ void AMyFirstActor::Tick(float DeltaTime)
 		//	NewRotation.Roll += RotationSpeed * DeltaTime;
 		//	Mesh->SetRelativeRotation(NewRotation);
 
-		// using deltatime because we want i	t to rotate per second, not by frame
+		// using deltatime because we want it to rotate per second, not by frame
 		// on 120 fps → insane spin
 		// on 30 fps → slower spin
 		// DeltaTime makes it per second.
 		// engine fundamentals unlocked.
-		// now run it and confirm cube spins.
-		// then we upgrade it to rotate the mesh component only, not the whole actor.that will teach local vs world space.
 
 		Mesh->AddLocalRotation(
 			FRotator(0.f, RotationSpeed * DeltaTime, RotationSpeed * DeltaTime)
@@ -126,7 +127,7 @@ void AMyFirstActor::Tick(float DeltaTime)
 		FVector NewLocation = StartLocation;
 		NewLocation.Z += ZOffset;
 
-		SetActorLocation(NewLocation);
+		// SetActorLocation(NewLocation);
 
 		// ----
 
@@ -137,13 +138,6 @@ void AMyFirstActor::Tick(float DeltaTime)
 		NewScale += FVector(ScaleOffset);
 
 		Mesh->SetRelativeScale3D(NewScale);
-		
-
-		// --- material ---
-		if (OverlapMaterial)
-		{
-			Mesh->SetMaterial(0, OverlapMaterial);
-		}
 	}
 }
 
@@ -155,13 +149,19 @@ void AMyFirstActor::OnOverlapBegin(
 	bool bFromSweep,
 	const FHitResult& SweepResult)
 {
+	if (!bGameStarted) return; // my attempt to fix some shit
+
+	if (!OtherActor || OtherActor == this) return;
+
 	UE_LOG(LogTemp, Warning, TEXT("Overlap with %s"), *OtherActor->GetName());
 
-	if (OverlapMaterial)
+	if (OtherActor->IsA(APawn::StaticClass()))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("BEGIN"));
 		Mesh->SetMaterial(0, OverlapMaterial);
 	}
 }
+
 
 void AMyFirstActor::OnOverlapEnd(
 	UPrimitiveComponent* OverlappedComponent,
@@ -169,8 +169,12 @@ void AMyFirstActor::OnOverlapEnd(
 	UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex)
 {
-	if (BaseMaterial)
+	if (!OtherActor || OtherActor == this) return;
+
+	if (OtherActor->IsA(APawn::StaticClass()))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("END"));
 		Mesh->SetMaterial(0, BaseMaterial);
 	}
 }
+

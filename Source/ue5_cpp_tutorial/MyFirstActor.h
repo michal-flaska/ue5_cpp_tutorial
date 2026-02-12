@@ -48,6 +48,8 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
+	bool bGameStarted = false;
+
 	UPROPERTY(VisibleAnywhere, /* BlueprintReadOnly, */ Category = "My First Actor - Properties")
 	UStaticMeshComponent* Mesh;
 
