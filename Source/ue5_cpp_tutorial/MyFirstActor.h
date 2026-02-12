@@ -14,6 +14,7 @@ class UE5_CPP_TUTORIAL_API AMyFirstActor : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AMyFirstActor();
+	virtual void OnConstruction(const FTransform& Transform) override;
 
 protected:
 	// Called when the game starts or when spawned
