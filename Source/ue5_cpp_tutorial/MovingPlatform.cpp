@@ -22,12 +22,9 @@ void AMovingPlatform::BeginPlay()
 
 	WorldPoints.Empty(); // clear world points in case beginplay run again in PIE
 
-	for (USceneComponent* Point : ControlPoints)
+	for (FVector Point : LocalPoints)
 	{
-		if (Point)
-		{
-			WorldPoints.Add(Point->GetComponentLocation());
-		}
+		WorldPoints.Add(GetActorTransform().TransformPosition(Point));
 	}
 
 	if (WorldPoints.Num() < 2) return;

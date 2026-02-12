@@ -27,14 +27,11 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
 
-	UPROPERTY(EditInstanceOnly, Category = "Movement")
-	TArray<FVector> LocalPoints;
-
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float MoveSpeed = 200.f;
 
-	UPROPERTY(EditInstanceOnly)
-	TArray<USceneComponent*> ControlPoints;
+	UPROPERTY(EditInstanceOnly, Category = "Movement", meta = (MakeEditWidget = "true"))
+	TArray<FVector> LocalPoints;
 
 	UPROPERTY()
 	TArray<FVector> WorldPoints;
