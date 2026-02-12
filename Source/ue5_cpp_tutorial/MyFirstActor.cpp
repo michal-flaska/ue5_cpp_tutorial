@@ -74,15 +74,7 @@ void AMyFirstActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	UE_LOG(LogTemp, Warning, TEXT("MyFirstActor Ticking"));
-
-	// deltatime because we want it to rotate per second, not by frame
-	// on 120 fps → insane spin
-	// on 30 fps → slower spin
-	// DeltaTime makes it per second.
-	// engine fundamentals unlocked.
-	// now run it and confirm cube spins.
-	// then we upgrade it to rotate the mesh component only, not the whole actor.that will teach local vs world space.
+	// UE_LOG(LogTemp, Warning, TEXT("MyFirstActor Ticking"));
 
 	if (bCanRotate == true) {
 
@@ -91,6 +83,14 @@ void AMyFirstActor::Tick(float DeltaTime)
 		//	NewRotation.Yaw += RotationSpeed * DeltaTime;
 		//	NewRotation.Roll += RotationSpeed * DeltaTime;
 		//	Mesh->SetRelativeRotation(NewRotation);
+
+		// using deltatime because we want it to rotate per second, not by frame
+		// on 120 fps → insane spin
+		// on 30 fps → slower spin
+		// DeltaTime makes it per second.
+		// engine fundamentals unlocked.
+		// now run it and confirm cube spins.
+		// then we upgrade it to rotate the mesh component only, not the whole actor.that will teach local vs world space.
 
 		Mesh->AddLocalRotation(
 			FRotator(0.f, RotationSpeed * DeltaTime, RotationSpeed * DeltaTime)
