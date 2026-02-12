@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "MyFirstActor.h"
@@ -59,6 +59,11 @@ void AMyFirstActor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	StartLocation = GetActorLocation();
+	StartScale = Mesh->GetRelativeScale3D();
+
+	SetActorTickEnabled(bCanRotate == true); // if bCanRotate is true, it will enable actor tick
+
 	// UE_LOG(LogTemp, Warning, TEXT("MyFirstActor BeginPlay"));
 	UE_LOG(LogTemp, Warning, TEXT("World is %s"), *GetWorld()->GetName());
 
@@ -72,15 +77,43 @@ void AMyFirstActor::Tick(float DeltaTime)
 	UE_LOG(LogTemp, Warning, TEXT("MyFirstActor Ticking"));
 
 	// deltatime because we want it to rotate per second, not by frame
-	// on 120 fps ? insane spin
-	// on 30 fps ? slower spin
+	// on 120 fps → insane spin
+	// on 30 fps → slower spin
 	// DeltaTime makes it per second.
 	// engine fundamentals unlocked.
 	// now run it and confirm cube spins.
 	// then we upgrade it to rotate the mesh component only, not the whole actor.that will teach local vs world space.
 
-	FRotator NewRotation = Mesh->GetRelativeRotation();
-	NewRotation.Yaw += RotationSpeed * DeltaTime;
-	NewRotation.Roll += RotationSpeed * DeltaTime;
-	Mesh->SetRelativeRotation(NewRotation); // now it rotates locally and not globally
+	if (bCanRotate == true) {
+
+		// old code
+		//	FRotator NewRotation = Mesh->GetRelativeRotation();
+		//	NewRotation.Yaw += RotationSpeed * DeltaTime;
+		//	NewRotation.Roll += RotationSpeed * DeltaTime;
+		//	Mesh->SetRelativeRotation(NewRotation);
+
+		Mesh->AddLocalRotation(
+			FRotator(0.f, RotationSpeed * DeltaTime, RotationSpeed * DeltaTime)
+		);
+
+		// ----
+
+		float FloatTime = GetWorld()->GetTimeSeconds() * FloatSpeed;
+		float ZOffset = FMath::Sin(FloatTime) * FloatAmplitude;
+
+		FVector NewLocation = StartLocation;
+		NewLocation.Z += ZOffset;
+
+		SetActorLocation(NewLocation);
+
+		// ----
+
+		float ScaleTime = GetWorld()->GetTimeSeconds() * ScaleSpeed;
+		float ScaleOffset = FMath::Sin(ScaleTime) * ScaleAmplitude;
+
+		FVector NewScale = StartScale;
+		NewScale += FVector(ScaleOffset);
+
+		Mesh->SetRelativeScale3D(NewScale);
+	}
 }

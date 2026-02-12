@@ -19,6 +19,21 @@ public:
 	UPROPERTY(EditAnywhere) // editanywhere means i can edit it in editor
 	float RotationSpeed = 90.f;
 
+	UPROPERTY(EditAnywhere, Category = "Rotation")
+	bool bCanRotate = true; // booleans start with b. its not necessary but its a goood practice in UE
+
+	UPROPERTY(EditAnywhere, Category = "Floating")
+	float FloatAmplitude = 50.f;
+
+	UPROPERTY(EditAnywhere, Category = "Floating")
+	float FloatSpeed = 1.f;
+
+	UPROPERTY(EditAnywhere, Category = "Floating")
+	float ScaleAmplitude = 0.2f;
+
+	UPROPERTY(EditAnywhere, Category = "Floating")
+	float ScaleSpeed = 1.f;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -30,4 +45,7 @@ public:
 private:
 	UPROPERTY(VisibleAnywhere, /* BlueprintReadOnly, */ Category = "Components")
 	UStaticMeshComponent* Mesh;
+
+	FVector StartLocation;
+	FVector StartScale;
 };
