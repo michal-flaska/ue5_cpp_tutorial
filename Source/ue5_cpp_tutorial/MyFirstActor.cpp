@@ -77,6 +77,15 @@ void AMyFirstActor::BeginPlay()
 
 	CachedBaseMaterial = Mesh->GetMaterial(0);
 
+	DynamicMaterial = Mesh->CreateDynamicMaterialInstance(0, CachedBaseMaterial);
+
+	if (DynamicMaterial)
+	{
+		DynamicMaterial->SetScalarParameterValue("GlowStrength", 0.f);
+	}
+
+	// ------
+
 	bGameStarted = true; // my attempt to fix overlap bugs
 
 	UE_LOG(LogTemp, Warning, TEXT("Base: %s"), *GetNameSafe(CachedBaseMaterial));
@@ -156,9 +165,9 @@ void AMyFirstActor::OnOverlapBegin(
 	{
 		UE_LOG(LogTemp, Warning, TEXT("BEGIN"));
 
-		if (OverlapMaterial)
+		if (DynamicMaterial)
 		{
-			Mesh->SetMaterial(0, OverlapMaterial);
+			DynamicMaterial->SetScalarParameterValue("GlowStrength", 5.f);
 		}
 	}
 }
@@ -176,9 +185,9 @@ void AMyFirstActor::OnOverlapEnd(
 	{
 		UE_LOG(LogTemp, Warning, TEXT("END"));
 
-		if (CachedBaseMaterial)
+		if (DynamicMaterial)
 		{
-			Mesh->SetMaterial(0, CachedBaseMaterial);
+			DynamicMaterial->SetScalarParameterValue("GlowStrength", 0.f);
 		}
 	}
 }

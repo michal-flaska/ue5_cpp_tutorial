@@ -46,6 +46,9 @@ protected:
 	UPROPERTY()
 	UMaterialInterface* CachedBaseMaterial;
 
+	UPROPERTY()
+	UMaterialInstanceDynamic* DynamicMaterial;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
