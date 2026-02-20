@@ -14,7 +14,7 @@ class UE5_CPP_TUTORIAL_API AMovingPlatform : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AMovingPlatform();
-
+	 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -27,10 +27,10 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
+	UPROPERTY(EditAnywhere, Category = "Mike's Platform|Movement")
 	float MoveSpeed = 200.f;
 
-	UPROPERTY(EditInstanceOnly, Category = "Movement", meta = (MakeEditWidget = "true"))
+	UPROPERTY(EditInstanceOnly, Category = "Mike's Platform|Movement", meta = (MakeEditWidget = "true"))
 	TArray<FVector> LocalPoints;
 
 	UPROPERTY()

@@ -21,22 +21,22 @@ public:
 	AMyFirstActor();
 	virtual void OnConstruction(const FTransform& Transform) override;
 
-	UPROPERTY(EditAnywhere) // editanywhere means i can edit it in editor
+	UPROPERTY(EditAnywhere, Category = "Mike's First Actor|Rotation") // editanywhere means i can edit it in editor
 	float RotationSpeed = 90.f;
 
-	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
+	UPROPERTY(EditAnywhere, Category = "Mike's First Actor|Rotation")
 	bool bCanRotate = true; // booleans start with b. its not necessary but its a goood practice in UE
 
-	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
+	UPROPERTY(EditAnywhere, Category = "Mike's First Actor|Floating")
 	float FloatAmplitude = 50.f;
 
-	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
+	UPROPERTY(EditAnywhere, Category = "Mike's First Actor|Floating")
 	float FloatSpeed = 1.f;
 
-	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
+	UPROPERTY(EditAnywhere, Category = "Mike's First Actor|Scale")
 	float ScaleAmplitude = 0.2f;
 
-	UPROPERTY(EditAnywhere, Category = "My First Actor - Properties")
+	UPROPERTY(EditAnywhere, Category = "Mike's First Actor|Scale")
 	float ScaleSpeed = 1.f;
 
 	// --- dynamic mat glow ---
@@ -44,7 +44,7 @@ public:
 	float CurrentGlow = 0.f;
 	float TargetGlow = 0.f;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category="Mike's First Actor|Glow")
 	float GlowInterpSpeed = 5.f;
 
 
@@ -65,7 +65,7 @@ public:
 private:
 	bool bGameStarted = false;
 
-	UPROPERTY(VisibleAnywhere, /* BlueprintReadOnly, */ Category = "My First Actor - Properties")
+	UPROPERTY(VisibleAnywhere, /* BlueprintReadOnly, */ Category = "Mike's First Actor")
 	UStaticMeshComponent* Mesh;
 
 	UPROPERTY(VisibleAnywhere)
