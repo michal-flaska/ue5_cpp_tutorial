@@ -65,6 +65,7 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 		EnhancedInput->BindAction(IA_Move,		ETriggerEvent::Triggered,	this, &ABaseCharacter::Move		);
 		EnhancedInput->BindAction(IA_Look,		ETriggerEvent::Triggered,	this, &ABaseCharacter::Look		);
 		EnhancedInput->BindAction(IA_Interact,	ETriggerEvent::Started,		this, &ABaseCharacter::Interact	); //changed triggered to started (i hope you know why)
+		EnhancedInput->BindAction(IA_BombAction, ETriggerEvent::Started,	this, &ABaseCharacter::BombAction);
 	}
 }
 
@@ -107,4 +108,14 @@ void ABaseCharacter::Interact(const FInputActionValue& Value)
 			}
 		}
 	}
+}
+
+// bomb interact func
+void ABaseCharacter::BombAction(const FInputActionValue& Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("BombAction Pressed"));
+
+	// GetWorld()->SpawnActor<AActor>()
+
+	// too tired now, will do it later
 }

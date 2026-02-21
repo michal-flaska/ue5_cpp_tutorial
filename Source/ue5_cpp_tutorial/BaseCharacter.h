@@ -48,9 +48,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Input")
 	UInputAction* IA_Interact;
 
-	void Move(const FInputActionValue& Value);
-	void Look(const FInputActionValue& Value);
-	void Interact(const FInputActionValue& Value);
+	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Input")
+	UInputAction* IA_BombAction;
+
+	void Move(		const FInputActionValue& Value);
+	void Look(		const FInputActionValue& Value);
+	void Interact(	const FInputActionValue& Value);
+	void BombAction(const FInputActionValue& Value);
 
 	// --- camera ---
 
@@ -61,4 +65,7 @@ public:
 	UCameraComponent* Camera;
 
 	// --- uncategorized shit ---
+
+	UPROPERTY(EditDefaultsOnly, Category = "Bomb")
+	TSubclassOf<AActor> BombClass; // TSubclassOf<AActor> means "a reference to any Actor class"
 };
