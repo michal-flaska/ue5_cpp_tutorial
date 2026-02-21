@@ -12,6 +12,12 @@ ABaseCharacter::ABaseCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	SpringArm->SetupAttachment(RootComponent);
+	SpringArm->bUsePawnControlRotation = true;
+
+	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	Camera->SetupAttachment(SpringArm);
 }
 
 // Called when the game starts or when spawned
@@ -19,12 +25,14 @@ void ABaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("BeginPlay called"));
+	// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("BeginPlay called"));
 
-	if (APlayerController* PC = Cast<APlayerController>(GetController()))
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Controller found"));
-	}
+	// if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	// {
+	// 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Controller found"));
+	// }
+
+	// ----
 	
 	if (APlayerController* PC = Cast<APlayerController>(GetController()))
 	{

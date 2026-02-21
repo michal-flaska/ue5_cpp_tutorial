@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
+
 #include "InputMappingContext.h"
 #include "InputAction.h"
 #include "InputActionValue.h"
@@ -36,6 +39,12 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* IA_Move;
+
+	UPROPERTY(VisibleAnywhere, Category = "Camera")
+	USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere, Category = "Camera")
+	UCameraComponent* Camera;
 
 	void Move(const FInputActionValue& Value);
 };
