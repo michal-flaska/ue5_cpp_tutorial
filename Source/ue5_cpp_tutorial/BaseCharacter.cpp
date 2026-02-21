@@ -89,21 +89,21 @@ void ABaseCharacter::Interact(const FInputActionValue& Value)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Interact Pressed"));
 
-	FVector Start = GetActorLocation();
-	FVector End = Start;
+	FVector Start = GetActorLocation(); // where the player is in the world
 
 	TArray<FOverlapResult> Overlaps;
-	FCollisionShape Sphere = FCollisionShape::MakeSphere(200.f);
+	FCollisionShape Sphere = FCollisionShape::MakeSphere(200.f); // i try to imagine an invisible sphere around the player
 
-	if (GetWorld()->OverlapMultiByChannel(Overlaps, Start, FQuat::Identity, ECC_WorldDynamic, Sphere))
+	if (GetWorld()->OverlapMultiByChannel(Overlaps, Start, FQuat::Identity, ECC_WorldDynamic, Sphere))	// asks UE: "what actors are inside this sphere right now?"
+																										// and fills the Overlaps array with everything it finds
 	{
-		for (FOverlapResult& Overlap : Overlaps)
+		for (FOverlapResult& Overlap : Overlaps) // loop through everything found
 		{
-			APickupBase* Pickup = Cast<APickupBase>(Overlap.GetActor());
-			if (Pickup)
+			APickupBase* Pickup = Cast<APickupBase>(Overlap.GetActor()); // try to cast it to PickupBase — Cast returns null if it's not a PickupBase
+			if (Pickup) // if cast succeeded(it IS a pickup)
 			{
-				Pickup->Destroy();
-				break;
+				Pickup->Destroy();	// self explanatory ig
+				break;				// stop looking, we only want one
 			}
 		}
 	}
