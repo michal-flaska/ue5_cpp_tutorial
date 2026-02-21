@@ -34,17 +34,27 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	// --- input ---
+
+	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Input")
 	UInputMappingContext* IMC_Default;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Input")
 	UInputAction* IA_Move;
 
-	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	USpringArmComponent* SpringArm;
-
-	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	UCameraComponent* Camera;
+	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Input")
+	UInputAction* IA_Look;
 
 	void Move(const FInputActionValue& Value);
+	void Look(const FInputActionValue& Value);
+
+	// --- camera ---
+
+	UPROPERTY(VisibleAnywhere, Category = "Mike's Character|Camera")
+	USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere, Category = "Mike's Character|Camera")
+	UCameraComponent* Camera;
+
+	// --- uncategorized shit ---
 };

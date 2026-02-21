@@ -58,6 +58,7 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInput->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ABaseCharacter::Move);
+		EnhancedInput->BindAction(IA_Look, ETriggerEvent::Triggered, this, &ABaseCharacter::Look);
 	}
 }
 
@@ -67,4 +68,12 @@ void ABaseCharacter::Move(const FInputActionValue& Value)
 	FVector2D Input = Value.Get<FVector2D>();
 	AddMovementInput(GetActorForwardVector(), Input.Y);
 	AddMovementInput(GetActorRightVector(), Input.X);
+}
+
+// look func
+void ABaseCharacter::Look(const FInputActionValue& Value)
+{
+	FVector2D Input = Value.Get<FVector2D>();
+	AddControllerYawInput(Input.X);
+	AddControllerPitchInput(Input.Y);
 }
