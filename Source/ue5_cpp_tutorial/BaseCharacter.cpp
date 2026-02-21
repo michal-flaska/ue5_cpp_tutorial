@@ -3,6 +3,10 @@
 
 #include "BaseCharacter.h"
 
+#include "PickupBase.h"
+
+#include "Engine/OverlapResult.h"
+
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 
@@ -83,5 +87,24 @@ void ABaseCharacter::Look(const FInputActionValue& Value)
 // interact func
 void ABaseCharacter::Interact(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interact pressed"));
+	UE_LOG(LogTemp, Warning, TEXT("Interact Pressed"));
+
+	FVector Start = GetActorLocation();
+	FVector End = Start;
+
+	TArray<FOverlapResult> Overlaps;
+	FCollisionShape Sphere = FCollisionShape::MakeSphere(200.f);
+
+	if (GetWorld()->OverlapMultiByChannel(Overlaps, Start, FQuat::Identity, ECC_WorldDynamic, Sphere))
+	{
+		for (FOverlapResult& Overlap : Overlaps)
+		{
+			APickupBase* Pickup = Cast<APickupBase>(Overlap.GetActor());
+			if (Pickup)
+			{
+				Pickup->Destroy();
+				break;
+			}
+		}
+	}
 }
