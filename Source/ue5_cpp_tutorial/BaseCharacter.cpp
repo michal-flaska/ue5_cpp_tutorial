@@ -117,5 +117,12 @@ void ABaseCharacter::BombAction(const FInputActionValue& Value)
 
 	// GetWorld()->SpawnActor<AActor>()
 
-	// too tired now, will do it later
+	if (BombClass)
+	{
+		FVector Location = GetActorLocation();
+		FRotator Rotation = FRotator::ZeroRotator;
+		GetWorld()->SpawnActor<AActor>(BombClass, Location, Rotation);
+	}
+
+	// nvm, i did it now
 }
