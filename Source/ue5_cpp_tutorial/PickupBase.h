@@ -35,5 +35,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "! Mike's PickupBase|Pickup")
 	float InteractionRadius = 200.f;
 
+	UPROPERTY(EditAnywhere, Category = "!Mike's PickupBase|Pickup")
+	float RotationSpeed = 100.f;
+
 	virtual void OnConstruction(const FTransform& Transform) override;
 };

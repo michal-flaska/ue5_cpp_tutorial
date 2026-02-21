@@ -37,5 +37,6 @@ void APickupBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	Mesh->AddLocalRotation(FRotator(0.f, RotationSpeed * DeltaTime, 0.f));
 }
 
