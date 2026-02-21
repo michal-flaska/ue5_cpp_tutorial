@@ -119,7 +119,7 @@ void ABaseCharacter::BombAction(const FInputActionValue& Value)
 
 	if (BombClass)
 	{
-		FVector Location = GetActorLocation();
+		FVector Location = GetActorLocation() + GetActorForwardVector() * 100.f;
 		FRotator Rotation = FRotator::ZeroRotator;
 		GetWorld()->SpawnActor<AActor>(BombClass, Location, Rotation);
 	}
