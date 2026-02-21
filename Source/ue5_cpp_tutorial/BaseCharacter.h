@@ -4,7 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "BaseCharacter.generated.h"
+
+#include "InputMappingContext.h"
+#include "InputAction.h"
+#include "InputActionValue.h"
+
+#include "BaseCharacter.generated.h" //must always be included last
 
 UCLASS()
 class UE5_CPP_TUTORIAL_API ABaseCharacter : public ACharacter
@@ -26,4 +31,11 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputMappingContext* IMC_Default;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* IA_Move;
+
+	void Move(const FInputActionValue& Value);
 };

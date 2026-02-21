@@ -3,6 +3,9 @@
 
 #include "BaseCharacter.h"
 
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+
 // Sets default values
 ABaseCharacter::ABaseCharacter()
 {
