@@ -15,6 +15,7 @@ ABaseCharacter::ABaseCharacter()
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArm->SetupAttachment(RootComponent);
 	SpringArm->bUsePawnControlRotation = true;
+	SpringArm->TargetArmLength = 400.f;
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm);
@@ -29,7 +30,7 @@ void ABaseCharacter::BeginPlay()
 
 	// if (APlayerController* PC = Cast<APlayerController>(GetController()))
 	// {
-	// 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Controller found"));
+	//	   GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Controller found"));
 	// }
 
 	// ----
@@ -59,6 +60,7 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	{
 		EnhancedInput->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ABaseCharacter::Move);
 		EnhancedInput->BindAction(IA_Look, ETriggerEvent::Triggered, this, &ABaseCharacter::Look);
+		EnhancedInput->BindAction(IA_Interact, ETriggerEvent::Triggered, this, &ABaseCharacter::Interact);
 	}
 }
 
@@ -76,4 +78,10 @@ void ABaseCharacter::Look(const FInputActionValue& Value)
 	FVector2D Input = Value.Get<FVector2D>();
 	AddControllerYawInput(Input.X);
 	AddControllerPitchInput(Input.Y);
+}
+
+// interact func
+void ABaseCharacter::Interact(const FInputActionValue& Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Interact pressed"));
 }

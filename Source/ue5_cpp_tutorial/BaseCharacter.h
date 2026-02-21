@@ -45,8 +45,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Input")
 	UInputAction* IA_Look;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Input")
+	UInputAction* IA_Interact;
+
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
+	void Interact(const FInputActionValue& Value);
 
 	// --- camera ---
 
