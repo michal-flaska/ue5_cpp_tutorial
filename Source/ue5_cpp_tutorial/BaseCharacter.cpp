@@ -18,7 +18,21 @@ ABaseCharacter::ABaseCharacter()
 void ABaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("BeginPlay called"));
+
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Controller found"));
+	}
 	
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(IMC_Default, 0);
+		}
+	}
 }
 
 // Called every frame
@@ -33,5 +47,16 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		EnhancedInput->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ABaseCharacter::Move);
+	}
 }
 
+// move func
+void ABaseCharacter::Move(const FInputActionValue& Value)
+{
+	FVector2D Input = Value.Get<FVector2D>();
+	AddMovementInput(GetActorForwardVector(), Input.Y);
+	AddMovementInput(GetActorRightVector(), Input.X);
+}

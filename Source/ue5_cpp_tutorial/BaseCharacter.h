@@ -31,10 +31,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(EditAnywhere, Category = "Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputMappingContext* IMC_Default;
 
-	UPROPERTY(EditAnywhere, Category = "Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* IA_Move;
 
 	void Move(const FInputActionValue& Value);
