@@ -119,10 +119,10 @@ void ABaseCharacter::BombAction(const FInputActionValue& Value)
 
 	if (BombClass)
 	{
-		FVector Location = GetActorLocation() + GetActorForwardVector() * 100.f;
+		FVector Location = GetActorLocation() + GetActorForwardVector() * 100.f;	// i really do like that there is GetActorForwardVector() built in
+																					// and i dont have to do some math to make this on my own...
+																					// i love you unreal devs <3
 		FRotator Rotation = FRotator::ZeroRotator;
 		GetWorld()->SpawnActor<AActor>(BombClass, Location, Rotation);
 	}
-
-	// nvm, i did it now
 }
