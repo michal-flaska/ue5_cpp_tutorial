@@ -53,6 +53,13 @@ void ABaseCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (GEngine)
+	{
+		const FVector Loc = GetActorLocation();
+		const FString Msg = FString::Printf(TEXT("player position is %s"), *Loc.ToString());
+
+		GEngine->AddOnScreenDebugMessage(1, 0.f, FColor::Purple, Msg);
+	}
 }
 
 // Called to bind functionality to input
