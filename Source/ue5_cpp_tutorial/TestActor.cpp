@@ -31,7 +31,12 @@ void ATestActor::Tick(float DeltaTime)
 	if (GEngine)
 	{
 		const FRotator Loc = GetActorRotation();
-		const FString Name = GetName();
+
+		const FString Name = GetName(); // https://forums.unrealengine.com/t/how-to-get-actor-id-name-in-c/295965/6
+										// GetName() returns the ID (the name you get if you hover over the object in the Outliner).
+										// use GetLabel() to get the Label that is displayed 
+										// both will work on actors
+
 		const FString Msg = FString::Printf(TEXT("rotation of %s is %s"),*Name, *Loc.ToString());
 
 		GEngine->AddOnScreenDebugMessage(2, 0.f, FColor::Yellow, Msg);
