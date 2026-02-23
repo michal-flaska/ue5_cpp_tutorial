@@ -8,6 +8,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 
+#include "HealthComponent.h"
+
 #include "InputMappingContext.h"
 #include "InputAction.h"
 #include "InputActionValue.h"
@@ -70,6 +72,9 @@ public:
 
 	// --- uncategorized shit ---
 
-	UPROPERTY(EditDefaultsOnly, Category = "Bomb")
+	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Bomb")
 	TSubclassOf<AActor> BombClass; // TSubclassOf<AActor> means "a reference to any Actor class"
+
+	UPROPERTY(VisibleAnywhere, Category = "Mike's Character|Health")
+	UHealthComponent* HealthComponent;
 };
