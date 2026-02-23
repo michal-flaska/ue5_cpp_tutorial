@@ -51,10 +51,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Input")
 	UInputAction* IA_BombAction;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Mike's Character|Input")
+	UInputAction* IA_Jump;
+
 	void Move(		const FInputActionValue& Value);
 	void Look(		const FInputActionValue& Value);
 	void Interact(	const FInputActionValue& Value);
 	void BombAction(const FInputActionValue& Value);
+	void Jump_Input(		const FInputActionValue& Value);
 
 	// --- camera ---
 

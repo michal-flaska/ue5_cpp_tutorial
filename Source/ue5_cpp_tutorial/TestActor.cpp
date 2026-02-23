@@ -27,5 +27,16 @@ void ATestActor::Tick(float DeltaTime)
 
 	AddActorLocalRotation(FRotator(0.f, RotationSpeed * DeltaTime, 0.f));
 
-}
+	/*
+	if (GEngine)
+	{
+		const FRotator Loc = GetActorRotation();
+		const FString Name = GetName();
+		const FString Msg = FString::Printf(TEXT("rotation of %s is %s"),*Name, *Loc.ToString());
 
+		GEngine->AddOnScreenDebugMessage(2, 0.f, FColor::Yellow, Msg);
+		// the key must always be different, otherwise it will replace the screendebug message of other actors that use the same key
+		// https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/UEngine/AddOnScreenDebugMessage
+	}
+	*/
+}

@@ -58,7 +58,7 @@ void ABaseCharacter::Tick(float DeltaTime)
 		const FVector Loc = GetActorLocation();
 		const FString Msg = FString::Printf(TEXT("player position is %s"), *Loc.ToString());
 
-		GEngine->AddOnScreenDebugMessage(1, 0.f, FColor::Purple, Msg);
+		GEngine->AddOnScreenDebugMessage(1, 0.f, FColor::Yellow, Msg);
 	}
 }
 
@@ -73,6 +73,7 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 		EnhancedInput->BindAction(IA_Look,		ETriggerEvent::Triggered,	this, &ABaseCharacter::Look		);
 		EnhancedInput->BindAction(IA_Interact,	ETriggerEvent::Started,		this, &ABaseCharacter::Interact	); //changed triggered to started (i hope you know why)
 		EnhancedInput->BindAction(IA_BombAction, ETriggerEvent::Started,	this, &ABaseCharacter::BombAction);
+		EnhancedInput->BindAction(IA_Jump,		ETriggerEvent::Started,		this, &ABaseCharacter::Jump_Input);
 	}
 }
 
@@ -95,7 +96,7 @@ void ABaseCharacter::Look(const FInputActionValue& Value)
 // interact func
 void ABaseCharacter::Interact(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interact Pressed"));
+	// UE_LOG(LogTemp, Warning, TEXT("Interact Pressed"));
 
 	FVector Start = GetActorLocation(); // where the player is in the world
 
@@ -120,7 +121,7 @@ void ABaseCharacter::Interact(const FInputActionValue& Value)
 // bomb interact func
 void ABaseCharacter::BombAction(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("BombAction Pressed"));
+	// UE_LOG(LogTemp, Warning, TEXT("BombAction Pressed"));
 
 	// GetWorld()->SpawnActor<AActor>()
 
@@ -132,4 +133,15 @@ void ABaseCharacter::BombAction(const FInputActionValue& Value)
 		FRotator Rotation = FRotator::ZeroRotator;
 		GetWorld()->SpawnActor<AActor>(BombClass, Location, Rotation);
 	}
+}
+
+// jump func
+void ABaseCharacter::Jump_Input(const FInputActionValue& Value)
+{
+	Jump(); 
+	// unreal already has built-in jump func already
+	// however if we dont want to use the built in jump func,
+	// then we can use LaunchCharacter:
+	// LaunchCharacter(FVector(0.f, 0.f, 600.f), false, true);
+	// but we would need to implement logic to not allow character to jump while not on ground
 }
