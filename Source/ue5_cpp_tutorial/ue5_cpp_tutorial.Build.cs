@@ -8,7 +8,7 @@ public class ue5_cpp_tutorial : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Landscape" }); // landscape because of the bomb actor
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Landscape", "AIModule" }); // landscape because of the bomb actor
 
         PrivateDependencyModuleNames.AddRange(new string[] {  });
 
