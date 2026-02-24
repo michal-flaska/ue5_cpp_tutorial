@@ -2,6 +2,8 @@
 
 Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmenu ucil ja 😂), tak si pozrite: https://www.canva.com/design/DAHCPd5DP4g/5ns5lvuQEocKJFxxAXM-tw/edit?utm_content=DAHCPd5DP4g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
+<br><br><br>
+
 ## C++ Resources
 
 (not for unreal, but extremely needed if you dont know C++ yet)
@@ -10,6 +12,8 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 - Cherno's C++ Series (more advanced if u want to delve deeper): https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
 - Learncpp: https://www.learncpp.com/
 - c++ docs (not for beginners): https://cplusplus.com/
+
+<br><br><br>
 
 ## Resources for UE's C++
 - FULL UNREAL C++ GUIDE: https://github.com/MrRobinOfficial/Guide-UnrealEngine
@@ -21,7 +25,7 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 <br>
 - How to delete C++ class in Unreal: https://www.youtube.com/watch?v=kU9EXDHPJiQ
 
----
+<br><br><br>
 
 ## Unreal Engine reverse engineering (my favorite topic)
 
