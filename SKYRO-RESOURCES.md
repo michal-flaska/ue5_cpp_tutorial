@@ -13,6 +13,13 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 - Learncpp: https://www.learncpp.com/
 - c++ docs (not for beginners): https://cplusplus.com/
 
+<br>
+
+- obrovske poznamky z cias ked som sa ucil c++: https://github.com/michal-flaska/cpp_tutorial
+- moje c++ miniprojektiky (+ poznamky): https://github.com/michal-flaska/cpp_projects
+- moj blog o tom ako sa spravne ucit programovacie jazyky: https://pilot2254.github.io/blog/the-right-way-to-learn-a-programming-language/
+- moj blog ktory vam pomoze porozumiet pointerom v c++: https://pilot2254.github.io/blog/pointers-in-cpp/
+
 <br><br><br>
 
 ## Resources for UE's C++
@@ -27,11 +34,11 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 
 <br>
 
-- How to delete C++ class in Unreal: https://www.youtube.com/watch?v=kU9EXDHPJiQ
+- How to delete C++ classes in Unreal: https://www.youtube.com/watch?v=kU9EXDHPJiQ
 
 <br><br><br>
 
-## Unreal Engine reverse engineering (my favorite topic)
+## Unreal Engine reverse engineering (my favorite)
 
 > [!IMPORTANT]
 > PLEASE DONT DO THIS IF YOU ONLY WANT TO MAKE GAMES
