@@ -18,11 +18,15 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 ## Resources for UE's C++
 - FULL UNREAL C++ GUIDE: https://github.com/MrRobinOfficial/Guide-UnrealEngine
 - Unreal 12hr C++ Tutorial (freeCodeCamp): https://youtu.be/6UlU_FsicK8
+
 <br>
+
 - Tom Looman's C++ Guide: https://tomlooman.com/unreal-engine-cpp-guide/
   - Tom Looman's Other C++ tutorials: https://tomlooman.com/tags/#c
   - Tom Looman's Open-Sourced Tutorial Game: https://github.com/tomlooman/ActionRoguelike
+
 <br>
+
 - How to delete C++ class in Unreal: https://www.youtube.com/watch?v=kU9EXDHPJiQ
 
 <br><br><br>
@@ -33,5 +37,4 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 > PLEASE DONT DO THIS IF YOU ONLY WANT TO MAKE GAMES
 
 - finding gworld sig: https://www.youtube.com/watch?v=Iyie3LD9W8Y
-<br>
 - will add soon, for now its not needed for y'all NPCs </3
