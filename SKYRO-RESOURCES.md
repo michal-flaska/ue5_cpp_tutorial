@@ -23,7 +23,8 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 <br><br><br>
 
 ## Resources for UE's C++
-- FULL UNREAL C++ GUIDE: https://github.com/MrRobinOfficial/Guide-UnrealEngine
+- Official tutorial by epicgames: https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-cpp-programming-tutorials
+- FULL UNREAL C++ GUIDE (github repo): https://github.com/MrRobinOfficial/Guide-UnrealEngine
 - Unreal 12hr C++ Tutorial (freeCodeCamp): https://youtu.be/6UlU_FsicK8
 
 <br>
