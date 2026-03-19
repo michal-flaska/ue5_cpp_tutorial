@@ -44,5 +44,6 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 > [!IMPORTANT]
 > PLEASE DONT DO THIS IF YOU ONLY WANT TO MAKE GAMES
 
-- finding gworld sig: https://www.youtube.com/watch?v=Iyie3LD9W8Y
+- finding gworld, gnames, gworld sigs: https://www.youtube.com/watch?v=Iyie3LD9W8Y
+- ue5 cheese tutorial: https://pilot2254.github.io/blog/how-i-made-digging-hax/
 - will add soon, for now its not needed for y'all NPCs </3
