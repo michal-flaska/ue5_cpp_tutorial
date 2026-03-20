@@ -10,6 +10,7 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 
 - BroCode's C++ Tutorial, the one i was learning from when i started (covers almost everythin you will need): https://www.youtube.com/watch?v=-TkoO8Z07hI
 - Cherno's C++ Series (more advanced if u want to delve deeper): https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
+- 31hr C++ Tutorial: https://www.youtube.com/watch?v=8jLOx1hD3_o&t=102328s&pp=ygUadW5yZWFsIGVuZ2luZSBjKysgdHV0b3JpYWw%3D
 - Learncpp: https://www.learncpp.com/
 - c++ docs (not for beginners): https://cplusplus.com/
 
@@ -23,9 +24,13 @@ Pre tych co este nevideli prezentaciu z prvej C++ hodiny (na ktorej som pre zmen
 <br><br><br>
 
 ## Resources for UE's C++
-- Official tutorial by epicgames: https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-cpp-programming-tutorials
+- Official tutorials by EpicGames: https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-cpp-programming-tutorials
+- FPS tutorial by EpicGames: https://dev.epicgames.com/documentation/en-us/unreal-engine/code-a-firstperson-adventure-game-in-unreal-engine
 - FULL UNREAL C++ GUIDE (github repo): https://github.com/MrRobinOfficial/Guide-UnrealEngine
 - Unreal 12hr C++ Tutorial (freeCodeCamp): https://youtu.be/6UlU_FsicK8
+- Youtube playlists
+  - UE5 Full Multiplayer Game tutorial series (~120 vids): https://youtube.com/playlist?list=PLzykqv-wgIQXompUswD5iHllUHxGY7w0q&si=iUwYT5rnEgT3lUlq
+  - UE5 Full C++ Survival Game tutorial series (~160 vids): https://youtube.com/playlist?list=PLB-SEOucjpoMTsfQGhux2RZLVr_o0mSO0&si=TsIw6Gf_kRdxMy4D
 
 <br>
 
